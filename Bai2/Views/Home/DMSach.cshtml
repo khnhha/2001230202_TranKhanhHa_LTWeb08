@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Bai2.Models.Sach>
+
+@{
+    ViewBag.Title = "Danh mục sách";
+}
+
+<h2 style="text-align:center; margin-bottom:20px;">DANH MỤC SÁCH</h2>
+
+<p style="text-align:center; margin-bottom:20px;">
+    @Html.ActionLink(
+        "Thêm mới sách",
+        "ThemMoiSach",
+        "Home",
+        null,
+        new { @class = "btn btn-success" }
+    )
+</p>
+
+<table class="table table-bordered table-striped" style="width:90%; margin:auto; text-align:center;">
+    <thead style="background-color:#f5f5f5;">
+        <tr>
+            <th>Tên Sách</th>
+            <th>Giá Bán</th>
+            <th>Mô Tả</th>
+            <th>Ảnh Bìa</th>
+            <th>Ngày Cập Nhật</th>
+            <th>Mã Chủ Đề</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.TenSach</td>
+                <td>@String.Format("{0:N0} VND", s.Giaban)</td>
+                <td>@s.Mota</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(s.Anhbia))
+                    {
+                        <img src="@s.Anhbia" alt="@s.TenSach" width="120" height="160" style="object-fit:cover;" />
+                    }
+                    else
+                    {
+                        <span>Không có ảnh</span>
+                    }
+                </td>
+                <td>@(s.Ngaycapnhat.HasValue ? s.Ngaycapnhat.Value.ToString("dd/MM/yyyy") : "")</td>
+                <td>@s.MaCD</td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "Chitietsach", new { id = s.MaSach }, new { @class = "btn btn-info btn-sm", style = "margin-right:5px;" })
+                    @Html.ActionLink("Xóa", "Delete", new { id = s.MaSach }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

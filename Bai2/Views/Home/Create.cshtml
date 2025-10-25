@@ -1,0 +1,61 @@
+﻿@model Bai2.Models.Sach
+
+@{
+    ViewBag.Title = "Thêm mới sách";
+}
+
+<h2 style="text-align:center; margin-top:20px;">THÊM MỚI SÁCH</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="max-width:600px; margin:auto;">
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.MaSach, "Mã sách")
+            @Html.TextBoxFor(m => m.MaSach, new { @class = "form-control", placeholder = "Nhập mã sách..." })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.TenSach, "Tên sách")
+            @Html.TextBoxFor(m => m.TenSach, new { @class = "form-control", placeholder = "Nhập tên sách..." })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Giaban, "Giá bán")
+            @Html.TextBoxFor(m => m.Giaban, new { @class = "form-control", placeholder = "Nhập giá bán..." })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Mota, "Mô tả")
+            @Html.TextAreaFor(m => m.Mota, new { @class = "form-control", rows = 5, placeholder = "Nhập mô tả sách..." })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Anhbia, "Ảnh bìa (đường dẫn URL)")
+            @Html.TextBoxFor(m => m.Anhbia, new { @class = "form-control", placeholder = "Dán link ảnh bìa vào đây..." })
+            <small class="form-text text-muted">Ví dụ: https://cdn1.fahasa.com/media/catalog/product/...</small>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Ngaycapnhat, "Ngày cập nhật")
+            @Html.TextBoxFor(m => m.Ngaycapnhat, "{0:yyyy-MM-dd}", new { type = "date", @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Mã chủ đề")
+            @Html.DropDownList("MaCD", null, "-- Chọn chủ đề --", new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Mã nhà xuất bản")
+            @Html.DropDownList("MaNXB", null, "-- Chọn nhà xuất bản --", new { @class = "form-control" })
+        </div>
+
+        <div class="form-group" style="text-align:center; margin-top:20px;">
+            <button type="submit" class="btn btn-success" style="width:150px;">Thêm mới</button>
+            @Html.ActionLink("Quay lại danh sách", "DMSach", null, new { @class = "btn btn-secondary", style = "margin-left:10px;" })
+        </div>
+    </div>
+}

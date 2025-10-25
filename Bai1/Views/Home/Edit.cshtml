@@ -1,0 +1,41 @@
+﻿@model Bai1.Models.Theloaitin
+
+@{
+    ViewBag.Title = "SỬA THỂ LOẠI TIN";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Thông tin thể loại:</legend>
+
+        <div class="editor-label">
+            <label>ID Loai:</label>
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.IDLoai)
+        </div>
+
+        <div class="editor-label">
+            <label>Tên thể loại:</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Tentheloai)
+            @Html.ValidationMessageFor(model => model.Tentheloai)
+        </div>
+
+        <p>
+            <input type="submit" value="Lưu thay đổi" class="btn btn-primary" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Trở lại danh sách", "Index", "Home", null, new { @class = "btn btn-secondary" })
+</div>

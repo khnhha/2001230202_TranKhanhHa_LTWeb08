@@ -1,0 +1,53 @@
+﻿@model Bai2.Models.Sach
+
+@{
+    ViewBag.Title = "Chi tiết sách";
+}
+
+<h2 style="text-align:center; margin-top:20px;">THÔNG TIN CHI TIẾT SÁCH</h2>
+
+<table class="table table-bordered" style="width:70%; margin:auto;">
+    <tr>
+        <th style="width:30%;">Tên sách</th>
+        <td>@Model.TenSach</td>
+    </tr>
+    <tr>
+        <th>Giá bán</th>
+        <td>@String.Format("{0:N0} VND", Model.Giaban)</td>
+    </tr>
+    <tr>
+        <th>Mô tả</th>
+        <td>@Model.Mota</td>
+    </tr>
+    <tr>
+        <th>Ảnh bìa</th>
+        <td>
+            @if (!string.IsNullOrEmpty(Model.Anhbia))
+            {
+                <img src="@Model.Anhbia" alt="@Model.TenSach" width="200" height="260" style="object-fit:cover;" />
+            }
+            else
+            {
+                <span>Không có ảnh</span>
+            }
+        </td>
+    </tr>
+    <tr>
+        <th>Ngày cập nhật</th>
+        <td>
+            @(Model.Ngaycapnhat.HasValue ? Model.Ngaycapnhat.Value.ToString("dd/MM/yyyy") : "")
+        </td>
+    </tr>
+    <tr>
+        <th>Chủ đề</th>
+        <td>@Model.MaCD</td>
+    </tr>
+    <tr>
+        <th>Nhà xuất bản</th>
+        <td>@Model.MaNXB</td>
+    </tr>
+</table>
+
+<p style="text-align:center; margin-top:20px;">
+    @Html.ActionLink("Quay lại danh sách", "DMSach", null, new { @class = "btn btn-secondary" })
+</p>

@@ -1,0 +1,64 @@
+﻿@model Bai2.Models.Sach
+
+@{
+    ViewBag.Title = "Xoa sach";
+}
+// KHÔNG CÓ DẤU ĐÓNG NGOẶC NHỌN THỪA Ở ĐÂY
+
+<h2 style="text-align:center; margin-top:20px; color:red;">XOA SACH</h2>
+
+<p style="text-align:center; color:red; font-weight:bold;">
+    Ban co chac muon xoa sach nay khong?
+</p>
+
+<table class="table table-bordered" style="width:70%; margin:auto;">
+    <tr>
+        <th style="width:30%;">Ten sach</th>
+        <td>@Model.TenSach</td>
+    </tr>
+    <tr>
+        <th>Gia ban</th>
+        <td>@String.Format("{0:N0} VND", Model.Giaban)</td>
+    </tr>
+    <tr>
+        <th>Mo ta</th>
+        <td>@Model.Mota</td>
+    </tr>
+    <tr>
+        <th>Anh bia</th>
+        <td>
+            @if (!string.IsNullOrEmpty(Model.Anhbia))
+            {
+                <img src="@Model.Anhbia" alt="@Model.TenSach" width="200" height="260" style="object-fit:cover;" />
+            }
+            else
+            {
+                <span>Khong co anh</span>
+            }
+        </td>
+    </tr>
+    <tr>
+        <th>Ngay cap nhat</th>
+        <td>
+            @(Model.Ngaycapnhat.HasValue ? Model.Ngaycapnhat.Value.ToString("dd/MM/yyyy") : "")
+        </td>
+    </tr>
+    <tr>
+        <th>Chu de</th>
+        <td>@Model.MaCD</td>
+    </tr>
+    <tr>
+        <th>Nha xuat ban</th>
+        <td>@Model.MaNXB</td>
+    </tr>
+</table>
+
+<div style="text-align:center; margin-top:20px;">
+    @using (Html.BeginForm("Delete", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.MaSach)
+        <input type="submit" value="Xoa sach" class="btn btn-danger" />
+        @Html.ActionLink("Huy", "DMSach", null, new { @class = "btn btn-secondary", style = "margin-left:10px;" })
+    }
+</div>

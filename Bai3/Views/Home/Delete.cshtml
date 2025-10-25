@@ -1,0 +1,41 @@
+﻿@model Bai3.Models.tbl_Employee
+
+@{
+    ViewBag.Title = "XÓA NHÂN VIÊN";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h4 class="text-danger">Bạn có chắc muốn xóa nhân viên này không?</h4>
+<p class="font-weight-bold">Thông tin chi tiết nhân viên sẽ bị xóa:</p>
+
+<table class="table table-bordered mt-3 w-50">
+    <tr>
+        <th>Mã Nhân Viên (ID)</th>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <th>Tên Nhân Viên</th>
+        <td>@Model.EmployName</td>
+    </tr>
+    <tr>
+        <th>Giới Tính</th>
+        <td>@Model.Gender</td>
+    </tr>
+    <tr>
+        <th>Thành Phố</th>
+        <td>@Model.City</td>
+    </tr>
+    <tr>
+        <th>Mã Phòng Ban (DepId)</th>
+        <td>@Model.DepId</td>
+    </tr>
+</table>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Xác Nhận Xóa" class="btn btn-danger" />
+    @Html.ActionLink("Hủy (Trở lại danh sách)", "Index", "Home", null, new { @class = "btn btn-secondary ml-2" })
+}

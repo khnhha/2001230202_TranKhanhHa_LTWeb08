@@ -1,0 +1,23 @@
+﻿@model Bai1.Models.Theloaitin
+
+@{
+    ViewBag.Title = "CHI TIẾT THỂ LOẠI TIN";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-bordered mt-3">
+    <tr>
+        <th>ID Loai</th>
+        <td>@Model.IDLoai</td>
+    </tr>
+    <tr>
+        <th>Ten The loai</th>
+        <td>@Model.Tentheloai</td>
+    </tr>
+</table>
+
+<div>
+    @Html.ActionLink("Trở lại danh sách", "Index", "Home", null, new { @class = "btn btn-secondary" })
+</div>

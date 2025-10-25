@@ -1,0 +1,29 @@
+namespace Bai1.Models
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("Theloaitin")]
+    public partial class Theloaitin
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Theloaitin()
+        {
+            Tintuc = new HashSet<Tintuc>();
+        }
+
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int IDLoai { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string Tentheloai { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tintuc> Tintuc { get; set; }
+    }
+}

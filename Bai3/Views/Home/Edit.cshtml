@@ -1,0 +1,62 @@
+﻿@model Bai3.Models.tbl_Employee
+
+@{
+    ViewBag.Title = "SỬA THÔNG TIN NHÂN VIÊN";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "Vui lòng kiểm tra lại các lỗi sau:", new { @class = "alert alert-danger" })
+
+    <fieldset>
+        <legend>Thông tin nhân viên:</legend>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Id, "Mã Nhân Viên:")
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.Id)
+                @Html.HiddenFor(model => model.Id)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmployName, "Tên Nhân Viên:")
+            <div class="editor-field">
+                @Html.EditorFor(model => model.EmployName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmployName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Gender, "Giới Tính:")
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, "Thành Phố:")
+            <div class="editor-field">
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DepId, "Phòng Ban:")
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.DepId, (SelectList)ViewBag.DepId, "-- Chọn Phòng Ban --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DepId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <p class="mt-3">
+            <input type="submit" value="Lưu Thay Đổi" class="btn btn-primary" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Trở Lại Danh Sách", "Index", "Home", null, new { @class = "btn btn-secondary" })
+</div>

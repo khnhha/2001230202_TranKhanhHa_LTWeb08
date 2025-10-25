@@ -1,0 +1,35 @@
+﻿@model Bai1.Models.Theloaitin
+@{
+    ViewBag.Title = "ThemMoi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2> ThemMoi</h2>
+<form action="/Home/Create" method="post">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend> TheLoaiTin </legend>
+
+        <div class="editor-field">
+            <label> IDLoai: </label><br />
+            @Html.EditorFor(model => model.IDLoai)
+            @Html.ValidationMessageFor(model => model.IDLoai)
+        </div>
+
+        <div class="editor-field">
+            <label> TenTheLoai: </label><br />
+            @Html.EditorFor(model => model.Tentheloai)
+            @Html.ValidationMessageFor(model => model.Tentheloai)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
